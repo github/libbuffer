@@ -1,0 +1,14 @@
+*~
+*.o
+*#
+*.dylib
+*.so
+*.so.*
+*.a
+cscope.*
+a.out
+failbot-report
+*.dSYM
+.clarcache
+clar.suite
+clar_test

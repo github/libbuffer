@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build docker image
+        run: |
+          docker build -f ./Dockerfile.cibuild -t libbuffer-cibuild .
+      - name: Run tests
+        run: |
+          docker run \
+            --rm \
+            --entrypoint "/bin/bash" \
+            libbuffer-cibuild \
+            -c "make test"
